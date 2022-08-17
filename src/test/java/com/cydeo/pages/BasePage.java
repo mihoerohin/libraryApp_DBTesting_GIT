@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * parent class for concrete Page object classes
  * provides constructor with initElements method for re-usability
@@ -43,5 +45,16 @@ public abstract  class BasePage {
 
     public void navigateModule(String moduleName){
         Driver.getDriver().findElement(By.xpath("//span[@class='title'][.='"+moduleName+"']")).click();
+    }
+
+    @FindBy(xpath = "//li[@class='nav-item']")
+    public List<WebElement> models;
+
+    public void clickModels(String model){
+        for (WebElement element : models){
+            if (element.getText().equalsIgnoreCase(model)){
+                element.click();
+            }
+        }
     }
 }

@@ -26,13 +26,24 @@ public class LoginPage {
 
     public void login(String userType){
 
-        String username=ConfigurationReader.getProperty(userType+"_username");
-        String password=ConfigurationReader.getProperty("password");
+        if(userType.equalsIgnoreCase("librarian")){
+            String username=ConfigurationReader.getProperty(userType+"_username");
+            String password=ConfigurationReader.getProperty(userType+"password");
+
+            emailBox.sendKeys(username);
+            passwordBox.sendKeys(password);
+            loginButton.click();
+
+        }else if(userType.equalsIgnoreCase("student")){
+            String username=ConfigurationReader.getProperty(userType+"_username");
+            String password=ConfigurationReader.getProperty(userType+"_password");
+
+            emailBox.sendKeys(username);
+            passwordBox.sendKeys(password);
+            loginButton.click();
+        }
 
 
-        emailBox.sendKeys(username);
-        passwordBox.sendKeys(password);
-        loginButton.click();
 
     }
 

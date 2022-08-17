@@ -1,4 +1,4 @@
-
+@test
 Feature: Book Category
 
   Scenario: verify book categories with UI
@@ -27,6 +27,21 @@ Feature: Book Category
       | Memoir                  |
       | Poetry                  |
 
+
+    @test @db
+  Scenario: verify book categories with DB
+    Given the user logged in as "librarian"
+    When the user navigates to "Books" page
+    And the user gets all book categories in webpage
+    Then verify book categories must match book categories table from db
+
+
+  @test @db
+  Scenario: Verify book information with db
+    Given the user logged in as "librarian"
+    And the user navigates to "Books" page
+    When I open book "Clean Code"
+    Then book information must match the database for "Clean Code"
 
 
 

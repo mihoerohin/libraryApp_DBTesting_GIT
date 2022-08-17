@@ -2,6 +2,7 @@ package com.cydeo.steps;
 
 import com.cydeo.utility.ConfigurationReader;
 
+import com.cydeo.utility.DB_Util;
 import com.cydeo.utility.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -19,8 +20,6 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigurationReader.getProperty("library_url"));
-
-
     }
 
     @After
@@ -31,10 +30,19 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png","screenshot");
         }
-
         Driver.closeDriver();
 
     }
 
+    @Before("@db")
+    public void setupDB(){
+        DB_Util.createConnection();
+        System.out.println("CONNECTION IS SUCCESSFUL");
+    }
 
+    @After("@db")
+    public void destroy(){
+        DB_Util.destroy();
+        System.out.println("CONNECTION IS CLOSED");
+    }
 }
