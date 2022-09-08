@@ -6,5 +6,6 @@ public class Git_Test {
         String str = "DNO";
         String str2 = "Hello test";
 
+        String str3 = "LOL";
     }
 }
