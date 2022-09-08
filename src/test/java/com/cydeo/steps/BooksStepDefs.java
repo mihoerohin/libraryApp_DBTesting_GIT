@@ -31,14 +31,12 @@ public class BooksStepDefs {
 
     @Then("user should be able to see following categories")
     public void user_should_be_able_to_see_following_categories(List<String> expectedCategoryList) {
-
         Assert.assertEquals(expectedCategoryList, actualCategoryList);
 
     }
 
     @When("I open book {string}")
     public void i_open_book(String bookName) {
-
         System.out.println("bookName = " + bookName);
         BrowserUtil.waitForClickablility(bookPage.search, 5).sendKeys(bookName);
         BrowserUtil.waitForClickablility(bookPage.editBook(bookName), 5).click();
@@ -47,7 +45,6 @@ public class BooksStepDefs {
 
     @Then("verify book categories must match book categories table from db")
     public void verify_book_categories_must_match_book_categories_table_from_db() {
-
         String query = "select name from book_categories";
 
         DB_Util.runQuery(query);
