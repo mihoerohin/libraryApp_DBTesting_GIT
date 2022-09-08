@@ -6,5 +6,6 @@ public class Git_Test_01 {
 
         System.out.println("Git merge");
         String test = "test";
+        String s = "!!!";
     }
 }
